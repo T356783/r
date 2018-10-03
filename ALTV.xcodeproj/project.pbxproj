@@ -14,6 +14,15 @@
 		8014DE672158809D003CA732 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8014DE652158809D003CA732 /* LaunchScreen.storyboard */; };
 		8014DE722158809D003CA732 /* ALTVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8014DE712158809D003CA732 /* ALTVTests.swift */; };
 		8014DE7D2158809D003CA732 /* ALTVUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8014DE7C2158809D003CA732 /* ALTVUITests.swift */; };
+		8014DE8E215881B3003CA732 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8014DE8C215881B2003CA732 /* SWRevealViewController.m */; };
+		8014DE902158849F003CA732 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8014DE8F2158849F003CA732 /* MenuViewController.swift */; };
+		8014DE922158850E003CA732 /* Canales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8014DE912158850E003CA732 /* Canales.swift */; };
+		8014DE9421588564003CA732 /* Peliculas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8014DE9321588564003CA732 /* Peliculas.swift */; };
+		8014DE962158857B003CA732 /* Series.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8014DE952158857B003CA732 /* Series.swift */; };
+		8014DE9921589EAF003CA732 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8014DE9821589EAE003CA732 /* MediaPlayer.framework */; };
+		803AFCB821629A0100E571BC /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803AFCB721629A0100E571BC /* AVKit.framework */; };
+		803AFCBA21629A0B00E571BC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803AFCB921629A0B00E571BC /* AVFoundation.framework */; };
+		80EAF9C92161D00700C7E574 /* Capitulos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAF9C82161D00700C7E574 /* Capitulos.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +56,17 @@
 		8014DE782158809D003CA732 /* ALTVUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ALTVUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8014DE7C2158809D003CA732 /* ALTVUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALTVUITests.swift; sourceTree = "<group>"; };
 		8014DE7E2158809D003CA732 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8014DE8B215881B0003CA732 /* ALTV-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ALTV-Bridging-Header.h"; sourceTree = "<group>"; };
+		8014DE8C215881B2003CA732 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		8014DE8D215881B2003CA732 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		8014DE8F2158849F003CA732 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		8014DE912158850E003CA732 /* Canales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canales.swift; sourceTree = "<group>"; };
+		8014DE9321588564003CA732 /* Peliculas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peliculas.swift; sourceTree = "<group>"; };
+		8014DE952158857B003CA732 /* Series.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
+		8014DE9821589EAE003CA732 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		803AFCB721629A0100E571BC /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		803AFCB921629A0B00E571BC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		80EAF9C82161D00700C7E574 /* Capitulos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capitulos.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +74,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				803AFCBA21629A0B00E571BC /* AVFoundation.framework in Frameworks */,
+				803AFCB821629A0100E571BC /* AVKit.framework in Frameworks */,
+				8014DE9921589EAF003CA732 /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +104,7 @@
 				8014DE702158809D003CA732 /* ALTVTests */,
 				8014DE7B2158809D003CA732 /* ALTVUITests */,
 				8014DE5A2158809B003CA732 /* Products */,
+				8014DE9721589EAE003CA732 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,10 +121,16 @@
 		8014DE5B2158809B003CA732 /* ALTV */ = {
 			isa = PBXGroup;
 			children = (
+				8014DE8A21588160003CA732 /* SWRevealViewController */,
 				8014DE5C2158809B003CA732 /* AppDelegate.swift */,
 				8014DE5E2158809B003CA732 /* ViewController.swift */,
 				8014DE602158809B003CA732 /* Main.storyboard */,
+				8014DE912158850E003CA732 /* Canales.swift */,
+				8014DE9321588564003CA732 /* Peliculas.swift */,
+				8014DE952158857B003CA732 /* Series.swift */,
+				80EAF9C82161D00700C7E574 /* Capitulos.swift */,
 				8014DE632158809D003CA732 /* Assets.xcassets */,
+				8014DE8F2158849F003CA732 /* MenuViewController.swift */,
 				8014DE652158809D003CA732 /* LaunchScreen.storyboard */,
 				8014DE682158809D003CA732 /* Info.plist */,
 			);
@@ -123,6 +153,26 @@
 				8014DE7E2158809D003CA732 /* Info.plist */,
 			);
 			path = ALTVUITests;
+			sourceTree = "<group>";
+		};
+		8014DE8A21588160003CA732 /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8014DE8D215881B2003CA732 /* SWRevealViewController.h */,
+				8014DE8C215881B2003CA732 /* SWRevealViewController.m */,
+				8014DE8B215881B0003CA732 /* ALTV-Bridging-Header.h */,
+			);
+			path = SWRevealViewController;
+			sourceTree = "<group>";
+		};
+		8014DE9721589EAE003CA732 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				803AFCB921629A0B00E571BC /* AVFoundation.framework */,
+				803AFCB721629A0100E571BC /* AVKit.framework */,
+				8014DE9821589EAE003CA732 /* MediaPlayer.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +243,7 @@
 				TargetAttributes = {
 					8014DE582158809B003CA732 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
 					};
 					8014DE6C2158809D003CA732 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -256,8 +307,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8014DE9421588564003CA732 /* Peliculas.swift in Sources */,
 				8014DE5F2158809B003CA732 /* ViewController.swift in Sources */,
+				8014DE922158850E003CA732 /* Canales.swift in Sources */,
 				8014DE5D2158809B003CA732 /* AppDelegate.swift in Sources */,
+				8014DE8E215881B3003CA732 /* SWRevealViewController.m in Sources */,
+				8014DE902158849F003CA732 /* MenuViewController.swift in Sources */,
+				80EAF9C92161D00700C7E574 /* Capitulos.swift in Sources */,
+				8014DE962158857B003CA732 /* Series.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +487,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ALTV/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -438,6 +496,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Alan.ALTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ALTV/SWRevealViewController/ALTV-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -447,6 +507,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ALTV/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -455,6 +516,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Alan.ALTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ALTV/SWRevealViewController/ALTV-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
