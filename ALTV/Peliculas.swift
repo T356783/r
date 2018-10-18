@@ -10,46 +10,40 @@ import UIKit
 import AVKit
 import AVFoundation
 import MediaPlayer
-class Peliculas: UIViewController, UITableViewDelegate, UITableViewDataSource {
+import Foundation
+let imageCache = NSCache<NSString, UIImage>()
+class Peliculas: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     var peliculasOb = [PeliObjeto]()
+    var currentPeli = [PeliObjeto]()
     @IBOutlet weak var tableViewPe: UITableView!
-    
+    @IBOutlet var searchBarPeli: UISearchBar!
     @IBOutlet var menuButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewPe.dataSource = self
         tableViewPe.delegate = self
+        searchBarPeli.delegate = self
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        let urlString = "https://pastebin.com/raw/Rwh9CRSk"
-        let url = URL(string: urlString)
-        let peticion = URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            if(error != nil){
-                print("Error: \(String(describing: error))")
-            } else {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [[String: AnyObject]]
-                    for user in json{
-                        let nombre = user["nombre"] as! String
-                        let imagen = user["imagen"] as! String
-                        let link = user["link"] as! String
-                        self.peliculasOb.append(PeliObjeto(name: nombre, imagen: imagen, link: link))
-                    }
-                    OperationQueue.main.addOperation({
-                        self.tableViewPe.reloadData()
-                    })
-                    
-                } catch let error as NSError{
-                    print(error)
-                }
+        let myURLString = "https://pastebin.com/raw/7hw1WvqR"
+        
+        
+        if let myURL = NSURL(string: myURLString) {
+            do {
+                let myHTMLString = try NSString(contentsOf: myURL as URL, encoding: String.Encoding.utf8.rawValue)
+                extractChannelsFromRawString(myHTMLString as String)
+            } catch {
+                print(error)
             }
         }
+        currentPeli = peliculasOb
+        self.tableViewPe.reloadData()
         
-        peticion.resume()
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -59,23 +53,48 @@ class Peliculas: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return peliculasOb.count
+        return currentPeli.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "custom2", for: indexPath) as! Pelicula
-        let urlString = peliculasOb[indexPath.row].imagen //Lista con las URLs
-        let url = NSURL(string: urlString)!
-        let data = NSData(contentsOf: url as URL)
-        cell.imagen.image=UIImage(data: data! as Data)
-        cell.numero.text=String (indexPath.row+1)
-        cell.nombre.text=peliculasOb[indexPath.row].name
+        let urlString = currentPeli[indexPath.row].imagen //Lista con las URLs
+        let url = URL(string: urlString)!
+        //let data = NSData(contentsOf: url as URL)
+        //cell.imagen.image=UIImage(data: data! as Data)
+        //
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data as Data) {
+                    DispatchQueue.main.async {
+                        cell.imagen.image=image
+                        //cell.numero.text=String (indexPath.row+1)
+                        //cell.nombre.text=self?.currentPeli[indexPath.row].name
+                    }
+                }
+            }
+        }
         
+        //cell.imagen.image=cacheImage(urlString: urlString)
+        cell.numero.text=String (indexPath.row+1)
+        cell.nombre.text=currentPeli[indexPath.row].name
+        //
         return cell
     }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else{
+            currentPeli = peliculasOb
+            tableViewPe.reloadData()
+            return
+        }
+        currentPeli = peliculasOb.filter({pelicula -> Bool in
+            pelicula.name.lowercased().contains(searchText.lowercased())
+        })
+        tableViewPe.reloadData()
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let videoURL = URL(string: peliculasOb[indexPath.row].link)
-        print(peliculasOb[indexPath.row].link)
+        let videoURL = URL(string: currentPeli[indexPath.row].link)
+        print(currentPeli[indexPath.row].imagen)
         let player = AVPlayer(url: videoURL!)
         let playerViewController = LandscapeAVPlayerController()
         playerViewController.player = player
@@ -84,7 +103,56 @@ class Peliculas: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         
     }
-    
+    /*func cacheImage(urlString: String) ->(UIImage){
+        var envia: UIImage? = nil
+        let url = URL(string: urlString)
+        if let imageFromCache = imageCache.object(forKey: urlString as NSString) as? AnyObject {
+            envia = imageFromCache as? UIImage
+        }
+        URLSession.shared.dataTask(with: url!) {
+            data, response, error in
+            if let response = data {
+                DispatchQueue.main.async {
+                    let imageToCache = UIImage(data: data!)
+                    imageCache.setObject(imageToCache!, forKey: (urlString as AnyObject) as! NSString)
+                    envia = imageToCache!
+                }
+            }
+            }.resume()
+        return envia!
+    }*/
+    func extractChannelsFromRawString(_ string: String) {
+        var namee = ""
+        var linkIm2 = ""
+        var linkIm3 = ""
+        string.enumerateLines { line, shouldStop in
+            if line.hasPrefix("#EXTINF:") {
+                let infoLine = line.replacingOccurrences(of: "#EXTINF:", with: "")
+                let infoItems = infoLine.components(separatedBy: ",")
+                if let title = infoItems.last {
+                    namee = title
+                }
+            }
+            if line.hasPrefix("#EXTINF:-1"){
+                let val2 = line.components(separatedBy: " ")
+                for sep in val2{
+                    if sep.hasPrefix("tvg-logo="){
+                        let sep2 = sep.components(separatedBy: ",")
+                        let sep1 = sep2[0]
+                        let indexStartOfText = sep1.index(sep1.startIndex, offsetBy: 10)
+                        linkIm2 = String(sep1[indexStartOfText...])
+                        let indexEndOfText = linkIm2.index(linkIm2.endIndex, offsetBy: -1)
+                        linkIm3 = String(linkIm2[..<indexEndOfText])
+                    }
+                }
+            }else {
+                if line.hasPrefix("http"){
+                    self.peliculasOb.append(PeliObjeto(name: namee, imagen: linkIm3, link: line))
+                    linkIm3 = ""
+                }
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -120,3 +188,5 @@ class LandscapeAVPlayerController: AVPlayerViewController{
         return .landscapeLeft
     }
 }
+
+
