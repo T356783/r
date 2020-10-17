@@ -28,7 +28,7 @@ class Peliculas: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        let myURLString = "https://pastebin.com/raw/7hw1WvqR"
+        let myURLString = "here edit your source with your own m3u"
         
         
         if let myURL = NSURL(string: myURLString) {
