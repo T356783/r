@@ -19,4 +19,5 @@ https://youtu.be/mzxFHvQckgQ
 
 Example for your Channels m3u file:
 #EXTINF:-1 tvg-logo="https://imagenes.gatotv.com/logos/canales/oscuros/multimedios_plus.png" group-title="Canales",Multimedios
+
 http://mdstrm.com/live-stream-playlist/57b4dbf5dbbfc8f16bb63ce1.m3u8
