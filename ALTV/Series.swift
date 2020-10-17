@@ -25,7 +25,7 @@ class Series: UIViewController, UITableViewDelegate, UITableViewDataSource,UISea
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        let myURLString = "https://pastebin.com/raw/nnCPZyKb"
+        let myURLString = "here edit your source with your own m3u"
         if let myURL = NSURL(string: myURLString) {
             do {
                 let myHTMLString = try NSString(contentsOf: myURL as URL, encoding: String.Encoding.utf8.rawValue)
